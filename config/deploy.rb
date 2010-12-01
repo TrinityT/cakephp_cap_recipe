@@ -6,7 +6,7 @@ set :use_sudo, false
 set :deploy_via, :export
 set :default_run_options, :pty => true
 
-# ˆÈ‰ºƒpƒ‰ƒ[ƒ^‚ðŠÂ‹«‚É‰ž‚¶‚Ä‘‚«Š·‚¦‚é
+# ä»¥ä¸‹ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿ã‚’ç’°å¢ƒã«å¿œã˜ã¦æ›¸ãæ›ãˆã‚‹
 set :application,  "TODO: your application name"
 set :scm,          "TODO: your scm type ex) subversion"
 set :repository,   "TODO: your scm repository url ex) http://hoge/repos/trunk"
@@ -17,7 +17,7 @@ set :cache_path,   "TODO: your CakePHP application cache folder ex) /tmp/cache"
 
 namespace :deploy do
 
-  desc "CakePHP—p‚Éfinalize_update‚ðã‘‚«‚·‚é"
+  desc "CakePHPç”¨ã«finalize_updateã‚’ä¸Šæ›¸ãã™ã‚‹"
   task :finalize_update, :except => { :no_release => true } do
     run "chmod -R g+w #{latest_release}/app" if fetch(:group_writable, true)
     run <<-CMD
@@ -35,24 +35,24 @@ namespace :deploy do
     end
   end
 
-  desc "•W€‚ÌƒVƒ“ƒ{ƒŠƒbƒN’£‚è’¼‚µŽÀsŒã‚És‚¤ˆ—‚ð‹Lq‚·‚é"
+  desc "æ¨™æº–ã®ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯å¼µã‚Šç›´ã—å®Ÿè¡Œå¾Œã«è¡Œã†å‡¦ç†ã‚’è¨˜è¿°ã™ã‚‹"
   after "deploy:symlink", :roles => [:app] do
-    # ŽQl‚Ü‚Å‚ÉˆÈ‰º‚É‰½“_‚©—á‚ð‹LÚB
+    # å‚è€ƒã¾ã§ã«ä»¥ä¸‹ã«ä½•ç‚¹ã‹ä¾‹ã‚’è¨˜è¼‰ã€‚
 
-    # ex1) database.phpƒtƒ@ƒCƒ‹‚ðŠÂ‹«–¼‚É‰ž‚¶‚ÄƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ð’£‚è’¼‚·
-    #      production‚ÅŽÀs‚µ‚½ê‡Aapp/config/database.php.production¨app/config/database.php‚Æ‚È‚éB
+    # ex1) database.phpãƒ•ã‚¡ã‚¤ãƒ«ã‚’ç’°å¢ƒåã«å¿œã˜ã¦ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒªãƒ³ã‚¯ã‚’å¼µã‚Šç›´ã™
+    #      productionã§å®Ÿè¡Œã—ãŸå ´åˆã€app/config/database.php.productionâ†’app/config/database.phpã¨ãªã‚‹ã€‚
     # run "ln -fns #{current_path}/app/config/database.php.#{stage} #{current_path}/app/config/database.php"
 
-    # ex2) webroot‚ðwebƒT[ƒoŒöŠJƒtƒHƒ‹ƒ_ã‚ÉƒAƒvƒŠƒP[ƒVƒ‡ƒ“–¼‚ÅƒVƒ“ƒ{ƒŠƒbƒNƒŠƒ“ƒN‚ð’£‚é
+    # ex2) webrootã‚’webã‚µãƒ¼ãƒå…¬é–‹ãƒ•ã‚©ãƒ«ãƒ€ä¸Šã«ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³åã§ã‚·ãƒ³ãƒœãƒªãƒƒã‚¯ãƒªãƒ³ã‚¯ã‚’å¼µã‚‹
     # run "ln -fns #{current_path}/app/webroot #{public_path}/#{application}"
 
-    # ex3) CakePHP‚ÌƒLƒƒƒbƒVƒ…ƒtƒHƒ‹ƒ_‚ðƒNƒŠƒA‚·‚éB
+    # ex3) CakePHPã®ã‚­ãƒ£ãƒƒã‚·ãƒ¥ãƒ•ã‚©ãƒ«ãƒ€ã‚’ã‚¯ãƒªã‚¢ã™ã‚‹ã€‚
     # sudo "mkdir -p #{cache_path}"
     # sudo "chmod 775 #{cache_path}"
     # run "rm -rf #{cache_path}/*"
   end
 
-  # CentOS‚ÌApache‚ÌÄ‹N“®ƒRƒ}ƒ“ƒhŒQB•s•K—v‚È‚çíœB
+  # CentOSã®Apacheã®å†èµ·å‹•ã‚³ãƒžãƒ³ãƒ‰ç¾¤ã€‚ä¸å¿…è¦ãªã‚‰å‰Šé™¤ã€‚
   # Apache start
   task :start, :roles => [:app] do
     sudo "/etc/rc.d/init.d/httpd start"
